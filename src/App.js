@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import * as BooksAPI from './BooksAPI';
+import { getAll, update } from './BooksAPI';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import PageNotFoundScreen from './screens/PageNotFoundScreen';
 import './App.css';
 
 class BooksApp extends Component {
+  state = {
+    library: new Map()
+  }
+
+  componentDidMount() {
+    getAll().then(books => console.dir(books));
+    /* this.setState((prevState) => ({
+      library: prevState.library.set(id, { cover, title, authors, currentShelf: shelf })
+    }));*/
+  }
+
+  onUpdateBook = (book, shelf) => {
+    update(book, shelf).then(({id, cover, title, authors}, shelf) => {
+      this.setState((prevState) => ({
+        library: prevState.library.set(id, { cover, title, authors, currentShelf: shelf })
+      }));
+    });
+  };
+
   render() {
     return (
       <Router>
         <div className="app">
           <Switch>
             <Route exact path="/" component={HomeScreen}/>
-            <Route path="/search" component={SearchScreen}/>
+            <Route path="/search" render={ () => (
+              <SearchScreen library={this.state.library} />
+            )}/>
             <Route component={PageNotFoundScreen}/>
           </Switch>
         </div>

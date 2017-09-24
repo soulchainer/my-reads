@@ -18,9 +18,9 @@ const Book = ({cover, title, authors, currentShelf}) => (
 );
 
 Book.propTypes = {
-  cover: PropTypes.string.isRequired,
+  cover: PropTypes.string,
   title: PropTypes.string.isRequired,
-  authors: PropTypes.string.isRequired,
+  authors: PropTypes.arrayOf(PropTypes.string),
   currentShelf: PropTypes.oneOf(Object.values(shelves))
 }
 

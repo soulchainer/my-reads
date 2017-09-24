@@ -4,12 +4,12 @@ import Book from './Book';
 import { shelves } from './utils/constants';
 
 const Bookshelf = ({shelf, books}) => {
-  const bookList = books.map((book, index) => (
-    <li key={index}>
+  const bookList = books.map(({id, cover, title, authors}) => (
+    <li key={id}>
       <Book
-        cover={book.cover}
-        title={book.title}
-        authors={book.authors}
+        cover={cover}
+        title={title}
+        authors={authors}
         currentShelf={shelves[shelf]}
       />
     </li>
