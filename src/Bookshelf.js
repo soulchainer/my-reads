@@ -31,7 +31,7 @@ Bookshelf.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape({
     cover: PropTypes.string,
     title: PropTypes.string,
-    authors: PropTypes.string
+    authors: PropTypes.arrayOf(PropTypes.string)
   }))
 };
 

@@ -16,10 +16,16 @@ class SearchScreen extends Component {
   maxResults = 20
 
   handleOnChange = e => {
-    this.setState({query: e.target.value})
-    this.debouncedSearch(this.state.query, this.maxResults).then(
-      books => this.setState({searchResults: books})
-    )
+    const { value } = e.target
+    this.setState({query: value})
+    if (value) {
+      this.debouncedSearch(value, this.maxResults)
+      .then(books => {
+        this.setState({searchResults: books})
+      })
+    } else {
+      this.setState({searchResults: null})
+    }
   }
 
   generateBook = (id, cover, title, authors, library) => {
@@ -50,7 +56,7 @@ class SearchScreen extends Component {
       <div className="search-books-results">
         <ul className="books-grid">
           {
-            this.state.searchResults &&
+            Array.isArray(this.state.searchResults) &&
             this.state.searchResults.map(({
               id,
               imageLinks: {thumbnail: cover},
