@@ -12,10 +12,22 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
-    getAll().then(books => console.dir(books));
-    /* this.setState((prevState) => ({
-      library: prevState.library.set(id, { cover, title, authors, currentShelf: shelf })
-    }));*/
+    getAll().then(books => {
+      let library = this.state.library
+      books.forEach(({
+        id,
+        imageLinks: {thumbnail: cover},
+        title,
+        authors,
+        shelf
+      }) => {
+        
+      });
+      this.setState((prevState) => ({
+        library: books.map(() => prevState.library.set(id, { cover, title, authors, shelf }))
+      }));
+      console.dir(this.state.library)
+    });
   }
 
   onUpdateBook = (book, shelf) => {
