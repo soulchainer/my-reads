@@ -12,6 +12,9 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
+    /**
+     * Get all the books in user library when application is started
+     */
     getAll().then(books => {
       let library = this.state.library
       books.forEach(({
@@ -21,15 +24,19 @@ class BooksApp extends Component {
         authors,
         shelf
       }) => {
-        
+        library.set(id, { cover, title, authors, shelf })
       });
-      this.setState((prevState) => ({
-        library: books.map(() => prevState.library.set(id, { cover, title, authors, shelf }))
-      }));
-      console.dir(this.state.library)
+      this.setState({library});
     });
   }
 
+  /**
+   * Update the current book shelf in our library if the book is already there
+   * or add it if not.
+   * @param {Object} book The book to be added or updated
+   * @param {string} shelf The shelf where the book will be from now on
+   * @memberof BooksApp
+   */
   onUpdateBook = (book, shelf) => {
     update(book, shelf).then(({id, cover, title, authors}, shelf) => {
       this.setState((prevState) => ({
@@ -43,8 +50,10 @@ class BooksApp extends Component {
       <Router>
         <div className="app">
           <Switch>
-            <Route exact path="/" component={HomeScreen}/>
-            <Route path="/search" render={ () => (
+            <Route exact path="/" render={() => (
+              <HomeScreen library={this.state.library} />
+            )}/>
+            <Route path="/search" render={() => (
               <SearchScreen library={this.state.library} />
             )}/>
             <Route component={PageNotFoundScreen}/>
