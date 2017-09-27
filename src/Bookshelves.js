@@ -3,7 +3,9 @@ import Bookshelf from './Bookshelf'
 import { shelves } from './utils/constants'
 
 const Bookshelves = ({library}) => {
-  let sortedLibrary = Object.keys(shelves).map(shelf => [shelf, []])
+
+  let sortedLibrary = Object.keys(shelves)
+  .filter(shelf => shelf !== 'none').map(shelf => [shelf, []])
   sortedLibrary = new Map(sortedLibrary)
   library.forEach(({shelf, cover, title, authors}, id) => {
     const bookShelf = sortedLibrary.get(shelf)
