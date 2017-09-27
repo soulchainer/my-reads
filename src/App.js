@@ -51,10 +51,16 @@ class BooksApp extends Component {
         <div className="app">
           <Switch>
             <Route exact path="/" render={() => (
-              <HomeScreen library={this.state.library} />
+              <HomeScreen
+                library={this.state.library}
+                onUpdateBook={this.onUpdateBook}
+              />
             )}/>
             <Route path="/search" render={() => (
-              <SearchScreen library={this.state.library} />
+              <SearchScreen
+                library={this.state.library}
+                onUpdateBook={this.onUpdateBook}
+              />
             )}/>
             <Route component={PageNotFoundScreen}/>
           </Switch>

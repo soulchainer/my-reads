@@ -12,10 +12,16 @@ class BookshelfChanger extends Component {
   }
 
   handleOnClick (e) {
-    this.setState({ selected: e.target.value })
+    const selectedShelf = e.target.value
+    const {book, currentShelf, onUpdateBook} = this.props
+    if (selectedShelf !== currentShelf) {
+      this.setState({ selected: selectedShelf })
+      onUpdateBook(book, selectedShelf)
+    }
   }
 
   render() {
+    const { currentShelf, onUpdateBook } = this.props
     return (
       <div className="book-shelf-changer">
         <select defaultValue={this.state.selected}>
@@ -36,7 +42,14 @@ class BookshelfChanger extends Component {
 }
 
 BookshelfChanger.propTypes = {
-  currentShelf: PropTypes.oneOf(Object.values(shelves))
+  book: PropTypes.shape({
+    id: PropTypes.string.required,
+    cover: PropTypes.string,
+    title: PropTypes.string,
+    authors: PropTypes.arrayOf(PropTypes.string)
+  })
+  currentShelf: PropTypes.oneOf(Object.values(shelves)),
+  onUpdateBook: PropTypes.func.isRequired
 }
 
 BookshelfChanger.defaultProps = {

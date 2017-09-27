@@ -29,16 +29,16 @@ class SearchScreen extends Component {
   }
 
   generateBook = (id, cover, title, authors, library) => {
-    let props = { cover, title, authors};
+    let props = { id, cover, title, authors, onUpdateBook};
     const fromLibrary = library.get(id)
     if (fromLibrary) {
       props = {...props, currentShelf: shelves[fromLibrary.shelf]};
     }
-    return <Book {...props} />;
+    return <Book {...props} onUpdateBook />;
   }
 
   render() {
-    const { library } = this.props;
+    const { library, onUpdateBook } = this.props;
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -76,7 +76,8 @@ class SearchScreen extends Component {
 }
 
 SearchScreen.propTypes = {
-  library: PropTypes.object
+  library: PropTypes.object.isRequired,
+  onUpdateBook: PropTypes.func.isRequired
 }
 
 export default SearchScreen;

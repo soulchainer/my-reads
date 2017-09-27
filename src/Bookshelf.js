@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 import { shelves } from './utils/constants';
 
-const Bookshelf = ({shelf, books}) => {
+const Bookshelf = ({shelf, books, onUpdateBook}) => {
   const bookList = books.map(({id, cover, title, authors}) => (
     <li key={id}>
       <Book
+        id={id}
         cover={cover}
         title={title}
         authors={authors}
         currentShelf={shelves[shelf]}
+        onUpdateBook={onUpdateBook}
       />
     </li>
   ))
@@ -32,7 +34,8 @@ Bookshelf.propTypes = {
     cover: PropTypes.string,
     title: PropTypes.string,
     authors: PropTypes.arrayOf(PropTypes.string)
-  }))
+  })),
+  onUpdateBook: PropTypes.func.isRequired
 };
 
 export default Bookshelf;
