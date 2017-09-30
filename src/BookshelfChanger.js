@@ -11,8 +11,6 @@ class BookshelfChanger extends Component {
     const selectedShelf = e.target.value
     const currentShelf = this.state.selected
     const {book, onUpdateBook} = this.props
-    console.log("currentShelf", currentShelf)
-    console.log("selected", selectedShelf)
     if (selectedShelf !== currentShelf) {
       this.setState({ selected: selectedShelf })
       onUpdateBook(book, selectedShelf)
@@ -20,7 +18,6 @@ class BookshelfChanger extends Component {
   }
 
   render() {
-    console.log(this.props.currentShelf)
     return (
       <div className="book-shelf-changer">
         <select

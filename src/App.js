@@ -42,7 +42,6 @@ class BooksApp extends Component {
       const {id, cover, title, authors} = book;
       let library = this.state.library
       library.set(id, { cover, title, authors, shelf });
-      console.log(shelf)
       this.setState({ library: library });
     });
   };

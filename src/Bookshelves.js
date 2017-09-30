@@ -9,6 +9,7 @@ const Bookshelves = ({library, onUpdateBook}) => {
   .filter(shelf => shelf !== 'none').map(shelf => [shelf, []])
   sortedLibrary = new Map(sortedLibrary)
   library.forEach(({shelf, cover, title, authors}, id) => {
+    if (shelf === 'none') return;
     const bookShelf = sortedLibrary.get(shelf)
     sortedLibrary.set(shelf, [...bookShelf, {id, cover, title, authors}])
   });
