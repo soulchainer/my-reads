@@ -28,13 +28,13 @@ class SearchScreen extends Component {
     }
   }
 
-  generateBook = (id, cover, title, authors, library) => {
+  generateBook = (id, cover, title, authors, library, onUpdateBook) => {
     let props = { id, cover, title, authors, onUpdateBook};
     const fromLibrary = library.get(id)
     if (fromLibrary) {
       props = {...props, currentShelf: shelves[fromLibrary.shelf]};
     }
-    return <Book {...props} onUpdateBook />;
+    return <Book {...props} onUpdateBook={onUpdateBook} />;
   }
 
   render() {
@@ -64,7 +64,7 @@ class SearchScreen extends Component {
               authors
             }) => (
               <li key={id}>
-                { this.generateBook(id, cover, title, authors, library) }
+                { this.generateBook(id, cover, title, authors, library, onUpdateBook) }
               </li>
             ))
           }
