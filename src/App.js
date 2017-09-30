@@ -4,6 +4,7 @@ import { getAll, update } from './BooksAPI';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import PageNotFoundScreen from './screens/PageNotFoundScreen';
+import getCover from './utils/getCover';
 import './App.css';
 
 class BooksApp extends Component {
@@ -19,12 +20,12 @@ class BooksApp extends Component {
       let library = this.state.library
       books.forEach(({
         id,
-        imageLinks: {thumbnail: cover},
+        imageLinks,
         title,
         authors,
         shelf
       }) => {
-        library.set(id, { cover, title, authors, shelf })
+        library.set(id, { cover: getCover(imageLinks), title, authors, shelf })
       });
       this.setState({library});
     });
