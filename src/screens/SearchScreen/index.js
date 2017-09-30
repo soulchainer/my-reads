@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import { search } from '../../BooksAPI';
-import Book from '../../Book';
-import { shelves } from '../../utils/constants';
+import SearchResults from '../../SearchResults'
 
 class SearchScreen extends Component {
   state = { 
@@ -28,15 +27,6 @@ class SearchScreen extends Component {
     }
   }
 
-  generateBook = (id, cover, title, authors, library, onUpdateBook) => {
-    let props = { id, cover, title, authors, onUpdateBook};
-    const fromLibrary = library.get(id)
-    if (fromLibrary) {
-      props = {...props, currentShelf: shelves[fromLibrary.shelf]};
-    }
-    return <Book {...props} onUpdateBook={onUpdateBook} />;
-  }
-
   render() {
     const { library, onUpdateBook } = this.props;
     return (
@@ -53,24 +43,14 @@ class SearchScreen extends Component {
 
           </div>
         </div>
-      <div className="search-books-results">
-        <ul className="books-grid">
-          {
-            Array.isArray(this.state.searchResults) &&
-            this.state.searchResults.map(({
-              id,
-              imageLinks: {thumbnail: cover},
-              title,
-              authors
-            }) => (
-              <li key={id}>
-                { this.generateBook(id, cover, title, authors, library, onUpdateBook) }
-              </li>
-            ))
-          }
-        </ul>
+        <div className="search-books-results">
+          <SearchResults
+            searchResults={this.state.searchResults}
+            library={library}
+            onUpdateBook={onUpdateBook}
+          />
+        </div>
       </div>
-    </div>
     );
   }
 }
