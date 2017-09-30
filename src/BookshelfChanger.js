@@ -7,13 +7,12 @@ class BookshelfChanger extends Component {
     selected: this.props.currentShelf
   };
 
-  componentDidMount () {
-    this.setState({ selected: this.props.currentShelf })
-  }
-
-  handleOnClick (e) {
+  handleOnChange = e => {
     const selectedShelf = e.target.value
-    const {book, currentShelf, onUpdateBook} = this.props
+    const currentShelf = this.state.selected
+    const {book, onUpdateBook} = this.props
+    console.log("currentShelf", currentShelf)
+    console.log("selected", selectedShelf)
     if (selectedShelf !== currentShelf) {
       this.setState({ selected: selectedShelf })
       onUpdateBook(book, selectedShelf)
@@ -21,15 +20,18 @@ class BookshelfChanger extends Component {
   }
 
   render() {
+    console.log(this.props.currentShelf)
     return (
       <div className="book-shelf-changer">
-        <select defaultValue={this.state.selected}>
+        <select
+          onChange={this.handleOnChange}
+          value={this.props.currentShelf}
+        >
           <option disabled>Move to...</option>
           {Object.keys(shelves).map((shelf) => (
             <option
               key={shelf}
               value={shelf}
-              onClick={this.handleOnClick}
             >
               {shelves[shelf]}
             </option>
@@ -47,12 +49,12 @@ BookshelfChanger.propTypes = {
     title: PropTypes.string,
     authors: PropTypes.arrayOf(PropTypes.string)
   }),
-  currentShelf: PropTypes.oneOf(Object.values(shelves)),
+  currentShelf: PropTypes.oneOf(Object.keys(shelves)),
   onUpdateBook: PropTypes.func.isRequired
 }
 
 BookshelfChanger.defaultProps = {
-  currentShelf: shelves.none
+  currentShelf: 'none'
 }
 
 export default BookshelfChanger;

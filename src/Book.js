@@ -22,7 +22,7 @@ Book.propTypes = {
   cover: PropTypes.string,
   title: PropTypes.string.isRequired,
   authors: PropTypes.arrayOf(PropTypes.string),
-  currentShelf: PropTypes.oneOf(Object.values(shelves)),
+  currentShelf: PropTypes.oneOf(Object.keys(shelves)),
   onUpdateBook: PropTypes.func.isRequired
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book';
-import { shelves, cover as defaultCover } from './utils/constants';
+import { cover as defaultCover } from './utils/constants';
 
 /**
  * @typedef {Object} ImageLinks
@@ -43,7 +43,7 @@ const SearchResults = ({searchResults, library, onUpdateBook}) => {
               cover={getCover(imageLinks)}
               title={title}
               authors={authors}
-              currentShelf={inLibrary ? shelves[inLibrary.shelf] : shelves.none}
+              currentShelf={inLibrary ? inLibrary.shelf : 'none'}
               onUpdateBook={onUpdateBook}
             />
           </li>

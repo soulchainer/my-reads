@@ -11,7 +11,7 @@ const Bookshelf = ({shelf, books, onUpdateBook}) => {
         cover={cover}
         title={title}
         authors={authors}
-        currentShelf={shelves[shelf]}
+        currentShelf={shelf}
         onUpdateBook={onUpdateBook}
       />
     </li>

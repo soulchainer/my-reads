@@ -38,10 +38,12 @@ class BooksApp extends Component {
    * @memberof BooksApp
    */
   onUpdateBook = (book, shelf) => {
-    update(book, shelf).then(({id, cover, title, authors}, shelf) => {
-      this.setState((prevState) => ({
-        library: prevState.library.set(id, { cover, title, authors, currentShelf: shelf })
-      }));
+    update(book, shelf).then(bookshelves => {
+      const {id, cover, title, authors} = book;
+      let library = this.state.library
+      library.set(id, { cover, title, authors, shelf });
+      console.log(shelf)
+      this.setState({ library: library });
     });
   };
 
