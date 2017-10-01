@@ -73,7 +73,9 @@ class App extends Component {
                 onUpdateBook={this.onUpdateBook}
               />
             )}/>
-            <Route component={PageNotFoundScreen}/>
+            <Route render={({location}) => (
+              <PageNotFoundScreen pathname={location.pathname} />
+            )}/>
           </Switch>
         </div>
       </Router>

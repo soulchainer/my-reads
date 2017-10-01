@@ -5,10 +5,10 @@ import MainWrapper from '../../MainWrapper';
 /**
  * Render the 404 error page (page not found) of the app.
  */
-const PageNotFoundScreen = () => (
+const PageNotFoundScreen = ({pathname}) => (
   <MainWrapper>
     <div className="page-not-found-content">
-      Page Not Found
+      <div>Page <code>{pathname}</code> Not Found</div>
       <Link to="/">Back to Home</Link>
     </div>
   </MainWrapper>
