@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book';
-import { shelves } from './utils/constants';
+import { SHELVES } from './utils/constants';
 
+/**
+ * Render a bookshelf of the library
+ */
 const Bookshelf = ({shelf, books, onUpdateBook}) => {
+  /**
+   * Array of books that will be rendered in the bookshelf.
+   */
   const bookList = books.map(({id, cover, title, authors}) => (
     <li key={id}>
       <Book
@@ -15,17 +21,17 @@ const Bookshelf = ({shelf, books, onUpdateBook}) => {
         onUpdateBook={onUpdateBook}
       />
     </li>
-  ))
+  ));
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">{shelves[shelf]}</h2>
+      <h2 className="bookshelf-title">{SHELVES[shelf]}</h2>
       <div className="bookshelf-books">
         <ul className="books-grid">
           {bookList}
         </ul>
       </div>
     </div>
-  )
+  );
 };
 
 Bookshelf.propTypes = {

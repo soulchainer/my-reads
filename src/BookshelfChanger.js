@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { shelves } from './utils/constants';
+import { SHELVES } from './utils/constants';
 
+/**
+ * Render the control of each book, that lets the user to choose what shelf a
+ * book is in or delete the book from the shelves (choosing the «None» "shelf").
+ */
 class BookshelfChanger extends Component {
   state = {
     selected: this.props.currentShelf
   };
 
   handleOnChange = e => {
-    const selectedShelf = e.target.value
-    const currentShelf = this.state.selected
-    const {book, onUpdateBook} = this.props
+    const selectedShelf = e.target.value;
+    const currentShelf = this.state.selected;
+    const {book, onUpdateBook} = this.props;
     if (selectedShelf !== currentShelf) {
-      this.setState({ selected: selectedShelf })
-      onUpdateBook(book, selectedShelf)
+      this.setState({ selected: selectedShelf });
+      onUpdateBook(book, selectedShelf);
     }
   }
 
@@ -25,14 +29,16 @@ class BookshelfChanger extends Component {
           value={this.props.currentShelf}
         >
           <option disabled>Move to...</option>
-          {Object.keys(shelves).map((shelf) => (
-            <option
-              key={shelf}
-              value={shelf}
-            >
-              {shelves[shelf]}
-            </option>
-          ))}
+          {
+            Object.keys(SHELVES).map((shelf) => (
+              <option
+                key={shelf}
+                value={shelf}
+              >
+                {SHELVES[shelf]}
+              </option>
+            ))
+          }
         </select>
       </div>
     );
@@ -46,12 +52,12 @@ BookshelfChanger.propTypes = {
     title: PropTypes.string,
     authors: PropTypes.arrayOf(PropTypes.string)
   }),
-  currentShelf: PropTypes.oneOf(Object.keys(shelves)),
+  currentShelf: PropTypes.oneOf(Object.keys(SHELVES)),
   onUpdateBook: PropTypes.func.isRequired
-}
+};
 
 BookshelfChanger.defaultProps = {
   currentShelf: 'none'
-}
+};
 
 export default BookshelfChanger;

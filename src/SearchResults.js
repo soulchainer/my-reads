@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 import getCover from './utils/getCover';
 
+/**
+ * Render the books from the search results, in the search page.
+ */
 const SearchResults = ({searchResults, library, onUpdateBook}) => {
   return (
     <ul className="books-grid">{
@@ -13,6 +16,10 @@ const SearchResults = ({searchResults, library, onUpdateBook}) => {
         title,
         authors
       }) => {
+        /**
+         * If the book is already in the library, get their info right away.
+         * At this moment, this is used to know in which shelf is the book.
+         */
         const inLibrary = library.get(id);
         return (
           <li key={id}>
@@ -25,16 +32,16 @@ const SearchResults = ({searchResults, library, onUpdateBook}) => {
               onUpdateBook={onUpdateBook}
             />
           </li>
-        )
+        );
       })
     }</ul>
   );
-}
+};
 
 SearchResults.propTypes = {
   library: PropTypes.object.isRequired,
   onUpdateBook: PropTypes.func.isRequired,
   searchResults: PropTypes.array
-}
+};
 
 export default SearchResults;

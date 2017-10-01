@@ -1,4 +1,4 @@
-import { cover as defaultCover } from './constants';
+import { COVER as DEFAULT_COVER } from './constants';
 
 /**
  * @typedef {Object} ImageLinks
@@ -14,12 +14,12 @@ import { cover as defaultCover } from './constants';
  * @memberof SearchResults
  */
 const getCover = (imageLinks) => {
-  let cover = defaultCover;
+  let cover = DEFAULT_COVER;
   if (imageLinks) {
     const {smallThumbnail, thumbnail} = imageLinks; 
     cover = thumbnail ? thumbnail : smallThumbnail;
   }
   return cover;
-}
+};
 
 export default getCover;

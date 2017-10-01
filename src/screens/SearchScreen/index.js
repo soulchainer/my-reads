@@ -3,27 +3,39 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import { search } from '../../BooksAPI';
-import SearchResults from '../../SearchResults'
+import SearchResults from '../../SearchResults';
 
+/**
+ * Render the search page of the app.
+ */
 class SearchScreen extends Component {
   state = { 
     query: '',
     searchResults: null
-  }
+  };
 
+  /**
+   * Use [`debounce`](https://davidwalsh.name/javascript-debounce-function) for
+   * performance reasons. Only do a search if last one was, at least,
+   * 300 milliseconds ago.
+   */
   debouncedSearch = debounce(search, 300, { 'leading': true });
-  maxResults = 20
+  maxResults = 20;
 
+  /**
+   * Act to every change on the search input, making possible the search
+   * feature.
+   */
   handleOnChange = e => {
-    const { value } = e.target
-    this.setState({query: value})
+    const { value } = e.target;
+    this.setState({query: value});
     if (value) {
       this.debouncedSearch(value, this.maxResults)
       .then(books => {
-        this.setState({searchResults: books})
-      })
+        this.setState({searchResults: books});
+      });
     } else {
-      this.setState({searchResults: null})
+      this.setState({searchResults: null});
     }
   }
 
@@ -58,6 +70,6 @@ class SearchScreen extends Component {
 SearchScreen.propTypes = {
   library: PropTypes.object.isRequired,
   onUpdateBook: PropTypes.func.isRequired
-}
+};
 
 export default SearchScreen;
