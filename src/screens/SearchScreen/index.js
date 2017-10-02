@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 import { search } from '../../BooksAPI';
 import SearchResults from '../../SearchResults';
+import Gandalf from '../../Gandalf';
 
 /**
  * Render the search page of the app.
@@ -40,34 +41,37 @@ class SearchScreen extends Component {
   }
 
   render() {
-    const { library, onUpdateBook } = this.props;
+    const { library, onUpdateBook, blocked } = this.props;
     return (
-      <div className="search-books">
-        <div className="search-books-bar">
-          <Link to='/' className="close-search">Close</Link>
-          <div className="search-books-input-wrapper">
-            <input
-              type="text"
-              placeholder="Search by title or author"
-              value={this.state.query}
-              onChange={this.handleOnChange}
-            />
+      <Gandalf shallNoPass={blocked}>
+        <div className="search-books">
+          <div className="search-books-bar">
+            <Link to='/' className="close-search">Close</Link>
+            <div className="search-books-input-wrapper">
+              <input
+                type="text"
+                placeholder="Search by title or author"
+                value={this.state.query}
+                onChange={this.handleOnChange}
+              />
 
+            </div>
+          </div>
+          <div className="search-books-results">
+            <SearchResults
+              searchResults={this.state.searchResults}
+              library={library}
+              onUpdateBook={onUpdateBook}
+            />
           </div>
         </div>
-        <div className="search-books-results">
-          <SearchResults
-            searchResults={this.state.searchResults}
-            library={library}
-            onUpdateBook={onUpdateBook}
-          />
-        </div>
-      </div>
+      </Gandalf>
     );
   }
 }
 
 SearchScreen.propTypes = {
+  blocked: PropTypes.bool.isRequired,
   library: PropTypes.object.isRequired,
   onUpdateBook: PropTypes.func.isRequired
 };

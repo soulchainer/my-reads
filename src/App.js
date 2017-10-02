@@ -19,12 +19,11 @@ class App extends Component {
      * library is updated properly with every change.
      */
     library: new Map(),
-    loading: false,
-    saving: false 
+    blocked: false,
   };
 
   componentDidMount() {
-    this.setState({ loading: true });
+    this.setState({ blocked: true });
     /**
      * Get all the books persisted in user library when application is started
      */
@@ -39,7 +38,7 @@ class App extends Component {
       }) => {
         library.set(id, { cover: getCover(imageLinks), title, authors, shelf });
       });
-      this.setState({ library, loading: false });
+      this.setState({ library, blocked: false });
     });
   }
 
@@ -51,17 +50,16 @@ class App extends Component {
    * @memberof App
    */
   onUpdateBook = (book, shelf) => {
-    this.setState({ saving: true });
+    this.setState({ blocked: true });
     update(book, shelf).then(bookshelves => {
       const {id, cover, title, authors} = book;
       let library = this.state.library;
       library.set(id, { cover, title, authors, shelf });
-      this.setState({ library, saving: false });
+      this.setState({ library, blocked: false });
     });
   };
 
   render() {
-    const status = { loading: this.state.loading, saving: this.state.saving };
     return (
       <Router>
         <div className="app">
@@ -70,14 +68,14 @@ class App extends Component {
               <HomeScreen
                 library={this.state.library}
                 onUpdateBook={this.onUpdateBook}
-                status={status}
+                blocked={blocked}
               />
             )}/>
             <Route path="/search" render={() => (
               <SearchScreen
                 library={this.state.library}
                 onUpdateBook={this.onUpdateBook}
-                status={status}
+                blocked={blocked}
               />
             )}/>
             <Route render={({location}) => (

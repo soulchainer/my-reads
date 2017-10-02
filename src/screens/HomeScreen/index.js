@@ -3,25 +3,29 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import MainWrapper from '../../MainWrapper';
 import Bookshelves from '../../Bookshelves';
+import Gandalf from '../../Gandalf';
 
 /**
  * Render the main page of the app, the «Home», with their three bookshelves
  * and some books on them.
  */
-const HomeScreen = ({ library, onUpdateBook }) => (
-  <MainWrapper>
-    <div>
-      <div className="list-books-content">
-        <Bookshelves library={library} onUpdateBook={onUpdateBook} />
+const HomeScreen = ({ library, onUpdateBook, blocked }) => (
+  <Gandalf shallNoPass={blocked}>
+    <MainWrapper>
+      <div>
+        <div className="list-books-content">
+          <Bookshelves library={library} onUpdateBook={onUpdateBook} />
+        </div>
+        <div className="open-search">
+          <Link to='/search'>Add a book</Link>
+        </div>
       </div>
-      <div className="open-search">
-        <Link to='/search'>Add a book</Link>
-      </div>
-    </div>
-  </MainWrapper>
+    </MainWrapper>
+  </Gandalf>
 );
 
 HomeScreen.propTypes = {
+  blocked: PropTypes.bool.isRequired,
   library: PropTypes.object.isRequired,
   onUpdateBook: PropTypes.func.isRequired
 };
