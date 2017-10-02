@@ -11,17 +11,20 @@ import './App.css';
  * Render the whole «My Reads» app.
  */
 class App extends Component {
-  /**
-   * Keep a `library` state, which will be updated with any change made to
-   * the library. This way, there is only needed one call to `getAll()`, just
-   * when the app starts, to populate this state. Of course, the persisted
-   * library is updated properly with every change.
-   */
   state = {
-    library: new Map()
+    /**
+     * Keep a `library` state, which will be updated with any change made to
+     * the library. This way, there is only needed one call to `getAll()`, just
+     * when the app starts, to populate this state. Of course, the persisted
+     * library is updated properly with every change.
+     */
+    library: new Map(),
+    loading: false,
+    saving: false 
   };
 
   componentDidMount() {
+    this.setState({ loading: true });
     /**
      * Get all the books persisted in user library when application is started
      */
@@ -36,7 +39,7 @@ class App extends Component {
       }) => {
         library.set(id, { cover: getCover(imageLinks), title, authors, shelf });
       });
-      this.setState({library});
+      this.setState({ library, loading: false });
     });
   }
 
@@ -48,15 +51,17 @@ class App extends Component {
    * @memberof App
    */
   onUpdateBook = (book, shelf) => {
+    this.setState({ saving: true });
     update(book, shelf).then(bookshelves => {
       const {id, cover, title, authors} = book;
       let library = this.state.library;
       library.set(id, { cover, title, authors, shelf });
-      this.setState({ library: library });
+      this.setState({ library, saving: false });
     });
   };
 
   render() {
+    const status = { loading: this.state.loading, saving: this.state.saving };
     return (
       <Router>
         <div className="app">
@@ -65,12 +70,14 @@ class App extends Component {
               <HomeScreen
                 library={this.state.library}
                 onUpdateBook={this.onUpdateBook}
+                status={status}
               />
             )}/>
             <Route path="/search" render={() => (
               <SearchScreen
                 library={this.state.library}
                 onUpdateBook={this.onUpdateBook}
+                status={status}
               />
             )}/>
             <Route render={({location}) => (
