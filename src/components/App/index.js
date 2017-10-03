@@ -68,7 +68,7 @@ class App extends Component {
               <HomeScreen
                 library={library}
                 onUpdateBook={this.onUpdateBook}
-                blocked
+                blocked={blocked}
               />
             )}/>
             <Route path="/search" render={() => (

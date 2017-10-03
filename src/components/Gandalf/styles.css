@@ -1,50 +1,17 @@
 /* gandalf: You shall no pass! (blocks the UI, no user input allowed) */
 
 .gandalf {
-  background-color: rgba(28, 28, 28, 0.2);
-  display: flex;
   cursor: wait;
+  display: flex;
   height: 100%;
-  justify-content: center;
   left: 0;
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: -1;
+}
+
+.gandalf.isBlocking {
+  pointer-events: none;
   z-index: 3;
-}
-
-.bookmark {
-  background-color: #af2b2b;
-  background-image: linear-gradient(to bottom, #af2b2b 10%, #c43030 90%, #d43434);
-  height: 50%;
-  position: relative;
-  transform: translateY(calc(-50vh - 60px));
-  transition: transform 0.4s ease-out;
-  width: 80px;
-}
-
-.bookmark.visible {
-  transform: translateY(0));
-  transition: transform 0.4s ease-in;
-}
-
-.bookmark::after,
-.bookmark::before {
-  background-color: #d43434;
-  bottom: -60px;
-  box-sizing: border-box;
-  content: "";
-  display: block;
-  height: 60px;
-  position: absolute;
-  width: 40px;
-}
-
-.bookmark::before {
-  clip-path: polygon(0 0, 0 100%, 100% 0, 0 0);
-}
-
-.bookmark::after {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
-  right: 0;
 }

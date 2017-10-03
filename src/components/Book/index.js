@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BookshelfChanger from '../BookshelfChanger';
 import { SHELVES } from '../../utils/constants';
+import './styles.css';
 
 /**
  * Render a Book, control for choosing shelf included
@@ -9,7 +10,9 @@ import { SHELVES } from '../../utils/constants';
 const Book = ({id, cover, title, authors, currentShelf, onUpdateBook}) => (
   <div className="book">
     <div className="book-top">
-      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${cover})` }}></div>
+      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${cover})` }}>
+        <div className="bookmark" />
+      </div>
       <BookshelfChanger
         book={{id, cover, title, authors}}
         currentShelf={currentShelf}

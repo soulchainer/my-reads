@@ -1,0 +1,36 @@
+.bookmark {
+  background-color: #af2b2b;
+  background-image: linear-gradient(to bottom, #af2b2b 10%, #c43030 90%, #d43434);
+  height: 80%;
+  left: 0;
+  position: relative;
+  transform: translateY(-110%);
+  transition: transform 0.2s ease-out;
+  width: 20%;
+}
+
+.bookmark.isShowing {
+  transform: translateY(0);
+  transition: transform 0.6s ease-in;
+}
+
+.bookmark::after,
+.bookmark::before {
+  background-color: #d43434;
+  bottom: -10%;
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  height: 10%;
+  position: absolute;
+  width: 50%;
+}
+
+.bookmark::before {
+  clip-path: polygon(0 0, 0 100%, 100% 0, 0 0);
+}
+
+.bookmark::after {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+  right: 0;
+}
