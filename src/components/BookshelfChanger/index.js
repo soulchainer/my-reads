@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SHELVES } from './utils/constants';
+import { SHELVES } from '../../utils/constants';
 
 /**
  * Render the control of each book, that lets the user to choose what shelf a

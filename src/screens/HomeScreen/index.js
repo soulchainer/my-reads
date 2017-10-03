@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import MainWrapper from '../../MainWrapper';
-import Bookshelves from '../../Bookshelves';
-import Gandalf from '../../Gandalf';
+import MainWrapper from '../../components/MainWrapper';
+import Bookshelves from '../../components/Bookshelves';
+import Gandalf from '../../components/Gandalf';
 
 /**
  * Render the main page of the app, the «Home», with their three bookshelves

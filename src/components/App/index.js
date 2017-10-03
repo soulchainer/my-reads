@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { getAll, update } from './BooksAPI';
-import HomeScreen from './screens/HomeScreen';
-import SearchScreen from './screens/SearchScreen';
-import PageNotFoundScreen from './screens/PageNotFoundScreen';
-import getCover from './utils/getCover';
-import './App.css';
+import { getAll, update } from '../../utils/BooksAPI';
+import HomeScreen from '../../screens/HomeScreen';
+import SearchScreen from '../../screens/SearchScreen';
+import PageNotFoundScreen from '../../screens/PageNotFoundScreen';
+import getCover from '../../utils/getCover';
+import './styles.css';
 
 /**
  * Render the whole «My Reads» app.
@@ -60,20 +60,22 @@ class App extends Component {
   };
 
   render() {
+    const {blocked} = this.props;
+    const {library} = this.state;
     return (
       <Router>
         <div className="app">
           <Switch>
             <Route exact path="/" render={() => (
               <HomeScreen
-                library={this.state.library}
+                library={library}
                 onUpdateBook={this.onUpdateBook}
                 blocked={blocked}
               />
             )}/>
             <Route path="/search" render={() => (
               <SearchScreen
-                library={this.state.library}
+                library={library}
                 onUpdateBook={this.onUpdateBook}
                 blocked={blocked}
               />

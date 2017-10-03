@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Book from './Book';
-import getCover from './utils/getCover';
+import Book from '../Book';
+import getCover from '../../utils/getCover';
 
 /**
  * Render the books from the search results, in the search page.

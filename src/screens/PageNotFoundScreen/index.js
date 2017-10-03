@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MainWrapper from '../../MainWrapper';
+import MainWrapper from '../../components/MainWrapper';
 
 /**
  * Render the 404 error page (page not found) of the app.

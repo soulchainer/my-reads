@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BookshelfChanger from './BookshelfChanger';
-import { SHELVES } from './utils/constants';
+import BookshelfChanger from '../BookshelfChanger';
+import { SHELVES } from '../../utils/constants';
 
 /**
  * Render a Book, control for choosing shelf included

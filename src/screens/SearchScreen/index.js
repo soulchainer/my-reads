@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
-import { search } from '../../BooksAPI';
-import SearchResults from '../../SearchResults';
-import Gandalf from '../../Gandalf';
+import { search } from '../../utils/BooksAPI';
+import SearchResults from '../../components/SearchResults';
+import Gandalf from '../../components/Gandalf';
 
 /**
  * Render the search page of the app.

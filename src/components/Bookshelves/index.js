@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bookshelf from './Bookshelf';
-import { SHELVES } from './utils/constants';
+import Bookshelf from '../Bookshelf';
+import { SHELVES } from '../../utils/constants';
 
 /**
  * Render the group of bookshelves of the main page, «home».
