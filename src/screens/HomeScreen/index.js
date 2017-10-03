@@ -10,7 +10,8 @@ import Gandalf from '../../components/Gandalf';
  * and some books on them.
  */
 const HomeScreen = ({ library, onUpdateBook, blocked }) => (
-  <Gandalf shallNoPass={blocked}>
+  <div>
+    <Gandalf shallNoPass={blocked} />
     <MainWrapper>
       <div>
         <div className="list-books-content">
@@ -21,7 +22,7 @@ const HomeScreen = ({ library, onUpdateBook, blocked }) => (
         </div>
       </div>
     </MainWrapper>
-  </Gandalf>
+  </div>
 );
 
 HomeScreen.propTypes = {

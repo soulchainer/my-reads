@@ -23,7 +23,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({ blocked: true });
     /**
      * Get all the books persisted in user library when application is started
      */
@@ -38,7 +37,7 @@ class App extends Component {
       }) => {
         library.set(id, { cover: getCover(imageLinks), title, authors, shelf });
       });
-      this.setState({ library, blocked: false });
+      this.setState({ library });
     });
   }
 
@@ -60,8 +59,7 @@ class App extends Component {
   };
 
   render() {
-    const {blocked} = this.props;
-    const {library} = this.state;
+    const {blocked, library} = this.state;
     return (
       <Router>
         <div className="app">
@@ -70,7 +68,7 @@ class App extends Component {
               <HomeScreen
                 library={library}
                 onUpdateBook={this.onUpdateBook}
-                blocked={blocked}
+                blocked
               />
             )}/>
             <Route path="/search" render={() => (

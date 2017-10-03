@@ -43,7 +43,8 @@ class SearchScreen extends Component {
   render() {
     const { library, onUpdateBook, blocked } = this.props;
     return (
-      <Gandalf shallNoPass={blocked}>
+      <div>
+        <Gandalf shallNoPass={blocked} />
         <div className="search-books">
           <div className="search-books-bar">
             <Link to='/' className="close-search">Close</Link>
@@ -65,7 +66,7 @@ class SearchScreen extends Component {
             />
           </div>
         </div>
-      </Gandalf>
+      </div>
     );
   }
 }
