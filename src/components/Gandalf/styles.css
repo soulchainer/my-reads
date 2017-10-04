@@ -8,10 +8,10 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: -1;
+  visibility: hidden;
 }
 
 .gandalf.isBlocking {
-  pointer-events: none;
+  visibility: visible;
   z-index: 3;
 }
