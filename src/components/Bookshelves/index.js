@@ -6,7 +6,7 @@ import { SHELVES } from '../../utils/constants';
 /**
  * Render the group of bookshelves of the main page, «home».
  */
-const Bookshelves = ({library, onUpdateBook}) => {
+const Bookshelves = ({library, onUpdateBook, showBookmark}) => {
   /**
    * Library rearranged by shelves. It's a `Map`, with shelves names as keys and
    * and array of book objects as values.
@@ -28,6 +28,7 @@ const Bookshelves = ({library, onUpdateBook}) => {
       shelf={shelf}
       books={books}
       onUpdateBook={onUpdateBook}
+      showBookmark={showBookmark}
     />
   ));
   return <div>{bookshelves}</div>;
@@ -35,7 +36,8 @@ const Bookshelves = ({library, onUpdateBook}) => {
 
 Bookshelves.propTypes = {
   library: PropTypes.object.isRequired,
-  onUpdateBook: PropTypes.func.isRequired
+  onUpdateBook: PropTypes.func.isRequired,
+  showBookmark: PropTypes.string
 };
 
 export default Bookshelves;

@@ -20,6 +20,7 @@ class App extends Component {
      */
     library: new Map(),
     blocked: false,
+    showBookmark: '',
   };
 
   componentDidMount() {
@@ -49,17 +50,17 @@ class App extends Component {
    * @memberof App
    */
   onUpdateBook = (book, shelf) => {
-    this.setState({ blocked: true });
+    const {id, cover, title, authors} = book;
+    this.setState({ blocked: true, showBookmark: id});
     update(book, shelf).then(bookshelves => {
-      const {id, cover, title, authors} = book;
       let library = this.state.library;
       library.set(id, { cover, title, authors, shelf });
-      this.setState({ library, blocked: false });
+      this.setState({ library, blocked: false, showBookmark: '' });
     });
   };
 
   render() {
-    const {blocked, library} = this.state;
+    const {blocked, library, showBookmark} = this.state;
     return (
       <Router>
         <div className="app">
@@ -69,6 +70,7 @@ class App extends Component {
                 library={library}
                 onUpdateBook={this.onUpdateBook}
                 blocked={blocked}
+                showBookmark={showBookmark}
               />
             )}/>
             <Route path="/search" render={() => (
@@ -76,6 +78,7 @@ class App extends Component {
                 library={library}
                 onUpdateBook={this.onUpdateBook}
                 blocked={blocked}
+                showBookmark={showBookmark}
               />
             )}/>
             <Route render={({location}) => (

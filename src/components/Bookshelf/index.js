@@ -6,7 +6,7 @@ import { SHELVES } from '../../utils/constants';
 /**
  * Render a bookshelf of the library
  */
-const Bookshelf = ({shelf, books, onUpdateBook}) => {
+const Bookshelf = ({shelf, books, onUpdateBook, showBookmark}) => {
   /**
    * Array of books that will be rendered in the bookshelf.
    */
@@ -19,6 +19,7 @@ const Bookshelf = ({shelf, books, onUpdateBook}) => {
         authors={authors}
         currentShelf={shelf}
         onUpdateBook={onUpdateBook}
+        showBookmark={showBookmark === id}
       />
     </li>
   ));
@@ -41,7 +42,8 @@ Bookshelf.propTypes = {
     title: PropTypes.string,
     authors: PropTypes.arrayOf(PropTypes.string)
   })),
-  onUpdateBook: PropTypes.func.isRequired
+  onUpdateBook: PropTypes.func.isRequired,
+  showBookmark: PropTypes.string
 };
 
 export default Bookshelf;

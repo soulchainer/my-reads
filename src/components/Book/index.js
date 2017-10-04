@@ -7,11 +7,19 @@ import './styles.css';
 /**
  * Render a Book, control for choosing shelf included
  */
-const Book = ({id, cover, title, authors, currentShelf, onUpdateBook}) => (
+const Book = ({
+  id,
+  cover,
+  title,
+  authors,
+  currentShelf,
+  onUpdateBook,
+  showBookmark
+}) => (
   <div className="book">
     <div className="book-top">
       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${cover})` }}>
-        <div className="bookmark" />
+        <div className={`bookmark${showBookmark ? ' isShowing' : ''}`} />
       </div>
       <BookshelfChanger
         book={{id, cover, title, authors}}
@@ -29,7 +37,8 @@ Book.propTypes = {
   title: PropTypes.string.isRequired,
   authors: PropTypes.arrayOf(PropTypes.string),
   currentShelf: PropTypes.oneOf(Object.keys(SHELVES)),
-  onUpdateBook: PropTypes.func.isRequired
+  onUpdateBook: PropTypes.func.isRequired,
+  showBookmark: PropTypes.bool.isRequired
 };
 
 export default Book;

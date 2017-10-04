@@ -6,7 +6,7 @@ import getCover from '../../utils/getCover';
 /**
  * Render the books from the search results, in the search page.
  */
-const SearchResults = ({searchResults, library, onUpdateBook}) => {
+const SearchResults = ({searchResults, library, onUpdateBook, showBookmark}) => {
   return (
     <ul className="books-grid">{
       Array.isArray(searchResults) &&
@@ -30,6 +30,7 @@ const SearchResults = ({searchResults, library, onUpdateBook}) => {
               authors={authors}
               currentShelf={inLibrary ? inLibrary.shelf : 'none'}
               onUpdateBook={onUpdateBook}
+              showBookmark={showBookmark === id}
             />
           </li>
         );
@@ -41,7 +42,8 @@ const SearchResults = ({searchResults, library, onUpdateBook}) => {
 SearchResults.propTypes = {
   library: PropTypes.object.isRequired,
   onUpdateBook: PropTypes.func.isRequired,
-  searchResults: PropTypes.array
+  searchResults: PropTypes.array,
+  showBookmark: PropTypes.string
 };
 
 export default SearchResults;

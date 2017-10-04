@@ -9,13 +9,17 @@ import Gandalf from '../../components/Gandalf';
  * Render the main page of the app, the «Home», with their three bookshelves
  * and some books on them.
  */
-const HomeScreen = ({ library, onUpdateBook, blocked }) => (
+const HomeScreen = ({ library, onUpdateBook, blocked, showBookmark }) => (
   <div>
     <Gandalf shallNoPass={blocked} />
     <MainWrapper>
       <div>
         <div className="list-books-content">
-          <Bookshelves library={library} onUpdateBook={onUpdateBook} />
+          <Bookshelves
+            library={library}
+            onUpdateBook={onUpdateBook}
+            showBookmark={showBookmark}
+          />
         </div>
         <div className="open-search">
           <Link to='/search'>Add a book</Link>
@@ -28,7 +32,8 @@ const HomeScreen = ({ library, onUpdateBook, blocked }) => (
 HomeScreen.propTypes = {
   blocked: PropTypes.bool.isRequired,
   library: PropTypes.object.isRequired,
-  onUpdateBook: PropTypes.func.isRequired
+  onUpdateBook: PropTypes.func.isRequired,
+  showBookmark: PropTypes.string
 };
 
 export default HomeScreen;

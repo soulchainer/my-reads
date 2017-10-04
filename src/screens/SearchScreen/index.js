@@ -41,7 +41,7 @@ class SearchScreen extends Component {
   }
 
   render() {
-    const { library, onUpdateBook, blocked } = this.props;
+    const { library, onUpdateBook, blocked, showBookmark } = this.props;
     return (
       <div>
         <Gandalf shallNoPass={blocked} />
@@ -63,6 +63,7 @@ class SearchScreen extends Component {
               searchResults={this.state.searchResults}
               library={library}
               onUpdateBook={onUpdateBook}
+              showBookmark={showBookmark}
             />
           </div>
         </div>
@@ -74,7 +75,8 @@ class SearchScreen extends Component {
 SearchScreen.propTypes = {
   blocked: PropTypes.bool.isRequired,
   library: PropTypes.object.isRequired,
-  onUpdateBook: PropTypes.func.isRequired
+  onUpdateBook: PropTypes.func.isRequired,
+  showBookmark: PropTypes.string
 };
 
 export default SearchScreen;
