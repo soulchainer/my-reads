@@ -1,11 +1,20 @@
 .list-books-title {
+  background-color: #791a0b;
+  background-image: linear-gradient(to bottom, #6f1809, #791a0b 50%, #6f1809);
   padding: 10px 0;
-  background: #791a0b;
   text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .list-books-title h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
   font-weight: 400;
+  letter-spacing: .1rem;
   margin: 0;
   color: white;
 }

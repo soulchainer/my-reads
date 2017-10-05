@@ -11,7 +11,7 @@
   bottom: 25px;
 }
 
-.open-search a {
+.open-search-link {
   display: block;
   width: 50px;
   height: 50px;
@@ -23,4 +23,10 @@
   background-size: 28px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
+  transition: transform 0.4s;
+}
+
+.open-search-link:hover {
+  transform: rotateZ(90deg);
+  transition: transform 0.4s;
 }

@@ -9,9 +9,11 @@
 }
 
 .bookshelf-title {
-  border-bottom: 4px solid #dedede;
-  color: rgba(28,28,28,0.8);
-  mix-blend-mode: multiply;
+  border-bottom: 5px dotted #fff;
+  color: #282828;
+  font-family: 'Finger Paint', cursive;
+  font-size: 1.8rem;
+  font-weight: 400;
 }
 
 .bookshelf-books {
