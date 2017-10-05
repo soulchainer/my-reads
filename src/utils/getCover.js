@@ -11,7 +11,6 @@ import { COVER as DEFAULT_COVER } from './constants';
  * If not, return the default cover image. 
  * @param {ImageLinks|undefined} imageLinks - An object with the thumbnails of the current book
  * @returns {string} The fetched cover image of the current book or the default cover image
- * @memberof SearchResults
  */
 const getCover = (imageLinks) => {
   let cover = DEFAULT_COVER;

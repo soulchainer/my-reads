@@ -44,7 +44,7 @@ const SearchResults = ({searchResults, library, onUpdateBook, showBookmark}) => 
 SearchResults.propTypes = {
   library: PropTypes.object.isRequired,
   onUpdateBook: PropTypes.func.isRequired,
-  searchResults: PropTypes.array,
+  searchResults: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   showBookmark: PropTypes.string
 };
 
