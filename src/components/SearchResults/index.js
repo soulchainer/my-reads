@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Book from '../Book';
 import getCover from '../../utils/getCover';
+import Empty from '../Empty';
 
 /**
  * Render the books from the search results, in the search page.
@@ -9,7 +10,7 @@ import getCover from '../../utils/getCover';
 const SearchResults = ({searchResults, library, onUpdateBook, showBookmark}) => {
   return (
     <ul className="books-grid">{
-      Array.isArray(searchResults) &&
+      Array.isArray(searchResults) ?
       searchResults.map(({
         id,
         imageLinks,
@@ -34,7 +35,8 @@ const SearchResults = ({searchResults, library, onUpdateBook, showBookmark}) => 
             />
           </li>
         );
-      })
+      }) :
+      <Empty />
     }</ul>
   );
 };

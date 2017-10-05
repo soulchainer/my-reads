@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Book from '../Book';
+import Empty from '../Empty';
 import { SHELVES } from '../../utils/constants';
 import './styles.css';
 
@@ -11,19 +12,22 @@ const Bookshelf = ({shelf, books, onUpdateBook, showBookmark}) => {
   /**
    * Array of books that will be rendered in the bookshelf.
    */
-  const bookList = books.map(({id, cover, title, authors}) => (
-    <li key={id}>
-      <Book
-        id={id}
-        cover={cover}
-        title={title}
-        authors={authors}
-        currentShelf={shelf}
-        onUpdateBook={onUpdateBook}
-        showBookmark={showBookmark === id}
-      />
-    </li>
-  ));
+  const bookList = books.length ?
+    books.map(({id, cover, title, authors}) => (
+      <li key={id}>
+        <Book
+          id={id}
+          cover={cover}
+          title={title}
+          authors={authors}
+          currentShelf={shelf}
+          onUpdateBook={onUpdateBook}
+          showBookmark={showBookmark === id}
+        />
+      </li>
+    )) :
+    <Empty />
+  ;
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{SHELVES[shelf]}</h2>
