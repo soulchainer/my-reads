@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import MainWrapper from '../../components/MainWrapper';
 import Bookshelves from '../../components/Bookshelves';
 import Gandalf from '../../components/Gandalf';
+import './styles.css';
 
 /**
  * Render the main page of the app, the «Home», with their three bookshelves

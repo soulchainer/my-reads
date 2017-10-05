@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Book from '../Book';
 import { SHELVES } from '../../utils/constants';
+import './styles.css';
 
 /**
  * Render a bookshelf of the library

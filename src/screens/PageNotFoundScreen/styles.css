@@ -1,0 +1,12 @@
+.page-not-found-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.page-not-found-content code {
+  color: #d94a38;
+}

@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce';
 import { search } from '../../utils/BooksAPI';
 import SearchResults from '../../components/SearchResults';
 import Gandalf from '../../components/Gandalf';
+import './styles.css'
 
 /**
  * Render the search page of the app.
