@@ -10,7 +10,7 @@ body {
 
 body,
 .app {
-  background: white;
+  background-image: url('../../assets/wood.png');
 }
 
 a:active,
